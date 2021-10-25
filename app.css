@@ -9,6 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    position: relative;
 }
 
 table {
@@ -22,4 +23,20 @@ table td {
     padding: 10px;
     text-align: center;
     border: 1px solid #000;
+}
+
+.end-game {
+    width: 250px;
+    height: 250px;
+    background-color: rgba(240, 108, 32 , 0.8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-size: 600;
 }
