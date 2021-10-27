@@ -24,6 +24,7 @@ table td {
     padding: 10px;
     text-align: center;
     border: 1px solid #000;
+    cursor: pointer;
 }
 
 .end-game {
@@ -49,4 +50,5 @@ table td {
     border: none;
     border-radius: 4px;
     margin-top: 2rem;
+    cursor: pointer;
 }
