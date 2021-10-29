@@ -27,7 +27,7 @@ table td {
     cursor: pointer;
 }
 
-.end-game {
+.end_game {
     width: 250px;
     height: 250px;
     background-color: rgba(240, 108, 32 , 0.8);
@@ -41,10 +41,10 @@ table td {
     justify-content: center;
     font-size: 1.5rem;
     font-size: 600;
-    display: none;
+    /* display: none; */
 }
 
-.replay-game {
+.replay_game {
     padding: 9px 16px;
     background-color: #dddddd;
     border: none;
