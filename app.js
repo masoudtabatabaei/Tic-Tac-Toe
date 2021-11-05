@@ -1,6 +1,7 @@
 const origBoard = Array.from(Array(9).keys());
 const humanPlayer = "X";
 const computerPlayer = "O";
+let finishedGame = false;
 const winCombination = [
     [0,1,2] ,
     [3,4,5] ,
@@ -13,27 +14,32 @@ const winCombination = [
 ];
 
 const cells = document.querySelectorAll(".cell");
+const endGameElem = document.querySelector(".end_game");
 
 startGame();
 
 function startGame() {
-    document.querySelector(".end_game").style.display = "none";
+    endGameElem.style.display = "none";
     console.log(origBoard);
     for(let i = 0; i < cells.length ; i++) {
         cells[i].addEventListener("click" , function(e) {
-            if(origBoard.includes(+e.target.id)) {
-                e.target.innerText = humanPlayer;
-                let selectedCell = origBoard.indexOf(+e.target.id);
-                origBoard.splice(selectedCell , 1);
-
-                if(checkWinState('human')[0]){
-                    alert("Human won");
-                } else if(origBoard.length >= 1) {
-                    computerPlayerMove();
+            if(!finishedGame){
+                if(origBoard.includes(+e.target.id)) {
+                    e.target.innerText = humanPlayer;
+                    let selectedCell = origBoard.indexOf(+e.target.id);
+                    origBoard.splice(selectedCell , 1);
+    
+                    if(checkWinState('human')[0]){
+                        endGameElem.style.display = "flex";
+                        endGameElem.textContent = "Human Won!";
+                        finishedGame = true;
+                    } else if(origBoard.length >= 1) {
+                        computerPlayerMove();
+                    }
+    
+                } else {
+                    alert("Incorrect Move!");
                 }
-
-            } else {
-                alert("Incorrect Move!");
             }
         });
     }
@@ -44,7 +50,8 @@ function computerPlayerMove() {
     document.getElementById(origBoard[selectPointIndex]).innerText = computerPlayer;
     origBoard.splice(selectPointIndex , 1);
     if(checkWinState('computer')[0]){
-        alert("Computer won");
+        endGameElem.style.display = "flex";
+        endGameElem.textContent = "Computer Won!";
     }
 }
 
