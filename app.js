@@ -1,4 +1,4 @@
-const origBoard = origBoard = Array.from(Array(9).keys());
+const origBoard = Array.from(Array(9).keys());
 const humanPlayer = "X";
 const computerPlayer = "O";
 const winCombination = [
@@ -26,9 +26,12 @@ function startGame() {
                 let selectedCell = origBoard.indexOf(+e.target.id);
                 origBoard.splice(selectedCell , 1);
 
-                if(origBoard.length >= 1) {
+                if(checkWinState('human')[0]){
+                    alert("Human won");
+                } else if(origBoard.length >= 1) {
                     computerPlayerMove();
                 }
+
             } else {
                 alert("Incorrect Move!");
             }
@@ -40,6 +43,36 @@ function computerPlayerMove() {
     let selectPointIndex = getRandomItemFromArray(0 , origBoard.length);
     document.getElementById(origBoard[selectPointIndex]).innerText = computerPlayer;
     origBoard.splice(selectPointIndex , 1);
+    if(checkWinState('computer')[0]){
+        alert("Computer won");
+    }
+}
+
+// check which players won!
+function checkWinState(player){
+    let isWin = false , winComb = [];
+    player = (player === 'human') ? humanPlayer : computerPlayer;
+    for(let i = 0 ; i < winCombination.length ; i++){
+        let setCount = 0;
+        let combination = winCombination[i];
+        for(let j = 0 ; j < combination.length ; j++){
+            let cell = document.getElementById(combination[j]);
+            if(cell.innerText !== "" && cell.innerText === player){
+                ++setCount;
+                continue;
+            } else {
+                break;
+            }
+        }
+
+        if(setCount === 3) {
+            winComb = combination;
+            isWin = true;
+            break;
+        }
+    }
+
+    return [isWin , winComb];
 }
 
 
