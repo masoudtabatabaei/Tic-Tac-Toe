@@ -1,4 +1,4 @@
-const origBoard = Array.from(Array(9).keys());
+let origBoard = Array.from(Array(9).keys());
 const humanPlayer = "X";
 const computerPlayer = "O";
 let finishedGame = false;
@@ -53,6 +53,15 @@ function computerPlayerMove() {
         endGameElem.style.display = "flex";
         endGameElem.textContent = "Computer Won!";
     }
+}
+
+// replay game
+function restartGame() {
+    endGameElem.style.display = "none";
+    cells.forEach(cell => {
+        cell.textContent = " ";
+    });
+    origBoard = Array.from(Array(9).keys());
 }
 
 // check which players won!
