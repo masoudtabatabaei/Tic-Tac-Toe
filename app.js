@@ -62,6 +62,7 @@ function restartGame() {
         cell.textContent = " ";
     });
     origBoard = Array.from(Array(9).keys());
+    finishedGame = false;
 }
 
 // check which players won!
