@@ -51,7 +51,7 @@ function startGame() {
                     origBoard.splice(selectedCell , 1);
     
                     if(checkWinState('human')[0]){
-                        endGameElem.style.display = "flex";
+                        endGameElem.style.display = "block";
                         endGameElem.textContent = "Human Won!";
                         finishedGame = true;
                     } else if(origBoard.length >= 1) {
@@ -74,7 +74,7 @@ function computerPlayerMove() {
     cells[origBoard[selectPointIndex]].dataset.player = "O";
     origBoard.splice(selectPointIndex , 1);
     if(checkWinState('computer')[0]){
-        endGameElem.style.display = "flex";
+        endGameElem.style.display = "block";
         endGameElem.textContent = "Computer Won!";
         finishedGame = true;
     }

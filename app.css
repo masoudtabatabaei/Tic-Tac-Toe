@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Poppins";
 }
 
 body {
@@ -19,8 +20,8 @@ table {
 }
 
 table td {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     padding: 10px;
     text-align: center;
     border: 1px solid #000;
@@ -33,28 +34,41 @@ table td svg {
     height: 50px;
 }
 
-.end_game {
-    width: 250px;
-    height: 250px;
-    background-color: rgba(240, 108, 32 , 0.8);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50% , -50%);
-    border-radius: 8px;
+.game_setting_container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-size: 600;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+
+.game_setting_container > div {
+    margin: 0 10px;
+    height: 45px;
+    line-height: 45px;
+    min-width: 140px;
+    font-size: 16px;
+}
+
+.end_game {
+    background-color: rgba(248, 37, 0, 0.842);
+    color: #ffffff;
+    border-radius: 4px;
     display: none;
+    text-align: center;
 }
 
 .replay_game {
-    padding: 9px 16px;
+    height: 100%;
     background-color: #dddddd;
+    box-shadow: 0 1px 4px #666666;
     border: none;
     border-radius: 4px;
-    margin-top: 2rem;
     cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+}
+
+.replay_game:hover {
+    background-color: #333333;
+    color:#ffffff;
 }
