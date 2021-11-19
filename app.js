@@ -45,7 +45,8 @@ function startGame() {
         cells[i].addEventListener("click" , function(e) {
             if(!finishedGame){
                 if(origBoard.includes(+e.target.id)) {
-                    e.target.innerText = humanPlayer;
+                    e.target.innerHTML  = humanPlayer;
+                    cells[i].dataset.player = "X";
                     let selectedCell = origBoard.indexOf(+e.target.id);
                     origBoard.splice(selectedCell , 1);
     
@@ -60,6 +61,8 @@ function startGame() {
                 } else {
                     alert("Incorrect Move!");
                 }
+            } else {
+                alert("Game Finished!");
             }
         });
     }
@@ -67,11 +70,13 @@ function startGame() {
 
 function computerPlayerMove() {
     let selectPointIndex = getRandomItemFromArray(0 , origBoard.length);
-    document.getElementById(origBoard[selectPointIndex]).innerText = computerPlayer;
+    document.getElementById(origBoard[selectPointIndex]).innerHTML  = computerPlayer;
+    cells[origBoard[selectPointIndex]].dataset.player = "O";
     origBoard.splice(selectPointIndex , 1);
     if(checkWinState('computer')[0]){
         endGameElem.style.display = "flex";
         endGameElem.textContent = "Computer Won!";
+        finishedGame = true;
     }
 }
 
@@ -80,6 +85,7 @@ function restartGame() {
     endGameElem.style.display = "none";
     cells.forEach(cell => {
         cell.textContent = " ";
+        delete cell.dataset.player;
     });
     origBoard = Array.from(Array(9).keys());
     finishedGame = false;
@@ -88,13 +94,13 @@ function restartGame() {
 // check which players won!
 function checkWinState(player){
     let isWin = false , winComb = [];
-    player = (player === 'human') ? humanPlayer : computerPlayer;
+    player = (player === 'human') ? "X" : "O";
     for(let i = 0 ; i < winCombination.length ; i++){
         let setCount = 0;
         let combination = winCombination[i];
         for(let j = 0 ; j < combination.length ; j++){
             let cell = document.getElementById(combination[j]);
-            if(cell.innerText !== "" && cell.innerText === player){
+            if(cell.dataset.player !== "" && cell.dataset.player === player){
                 ++setCount;
                 continue;
             } else {
