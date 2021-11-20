@@ -44,10 +44,11 @@ function startGame() {
     for(let i = 0; i < cells.length ; i++) {
         cells[i].addEventListener("click" , function(e) {
             if(!finishedGame){
-                if(origBoard.includes(+e.target.id)) {
+                let cellID = +e.target.id.replace("cell_" , "");
+                if(origBoard.includes(cellID)) {
                     e.target.innerHTML  = humanPlayer;
                     cells[i].dataset.player = "X";
-                    let selectedCell = origBoard.indexOf(+e.target.id);
+                    let selectedCell = origBoard.indexOf(cellID);
                     origBoard.splice(selectedCell , 1);
     
                     if(checkWinState('human')[0]){
@@ -70,7 +71,7 @@ function startGame() {
 
 function computerPlayerMove() {
     let selectPointIndex = getRandomItemFromArray(0 , origBoard.length);
-    document.getElementById(origBoard[selectPointIndex]).innerHTML  = computerPlayer;
+    document.getElementById("cell_" + origBoard[selectPointIndex]).innerHTML  = computerPlayer;
     cells[origBoard[selectPointIndex]].dataset.player = "O";
     origBoard.splice(selectPointIndex , 1);
     if(checkWinState('computer')[0]){
@@ -99,7 +100,7 @@ function checkWinState(player){
         let setCount = 0;
         let combination = winCombination[i];
         for(let j = 0 ; j < combination.length ; j++){
-            let cell = document.getElementById(combination[j]);
+            let cell = document.getElementById("cell_" + combination[j]);
             if(cell.dataset.player !== "" && cell.dataset.player === player){
                 ++setCount;
                 continue;
@@ -114,6 +115,10 @@ function checkWinState(player){
             break;
         }
     }
+
+    winComb.forEach(cellID => {
+        document.querySelector("#cell_"+ cellID +"").style.backgroundColor = "#68f368";
+    });
 
     return [isWin , winComb];
 }
