@@ -57,8 +57,9 @@ function startGame() {
                         finishedGame = true;
                     } else if(origBoard.length >= 1) {
                         computerPlayerMove();
+                    } else {
+                        checkFinishingGame();
                     }
-    
                 } else {
                     alert("Incorrect Move!");
                 }
@@ -122,6 +123,14 @@ function checkWinState(player){
     });
 
     return [isWin , winComb];
+}
+
+
+function checkFinishingGame(){
+    if(origBoard.length == 0 ){
+        endGameElem.style.display = "block";
+        endGameElem.textContent = "Game Ended!";
+    }
 }
 
 
