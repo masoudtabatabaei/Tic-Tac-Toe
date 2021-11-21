@@ -95,9 +95,16 @@ function restartGame() {
 }
 
 // check which players won!
-function checkWinState(player){
+function checkWinState(playerRule){
     let isWin = false , winComb = [];
-    player = (player === 'human') ? "X" : "O";
+
+    let player = "O";
+    let bgColorOfWinnerCombination = "#ffd0d6";
+    if(playerRule === "human"){
+        player = "X";
+        bgColorOfWinnerCombination = "#68f368";
+    } 
+
     for(let i = 0 ; i < winCombination.length ; i++){
         let setCount = 0;
         let combination = winCombination[i];
@@ -117,15 +124,16 @@ function checkWinState(player){
             break;
         }
     }
-
+    
     winComb.forEach(cellID => {
-        document.querySelector("#cell_"+ cellID +"").style.backgroundColor = "#68f368";
+        document.querySelector("#cell_"+ cellID +"").style.backgroundColor = bgColorOfWinnerCombination;
     });
 
     return [isWin , winComb];
 }
 
 
+// check if game finished or not
 function checkFinishingGame(){
     if(origBoard.length == 0 ){
         endGameElem.style.display = "block";
