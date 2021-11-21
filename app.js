@@ -87,6 +87,7 @@ function restartGame() {
     cells.forEach(cell => {
         cell.textContent = " ";
         delete cell.dataset.player;
+        cell.style.backgroundColor = "transparent";
     });
     origBoard = Array.from(Array(9).keys());
     finishedGame = false;
