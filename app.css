@@ -14,6 +14,24 @@ body {
     position: relative;
 }
 
+.players_icon {
+    margin-bottom: 42px;
+    display: flex;
+    justify-content: center;
+}
+
+.players_icon span {
+    margin: 0 22px;
+    color: #cccccc;
+}
+
+.players_icon span svg {
+    width: 25px;
+    fill: #ccc;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
 table {
     border-collapse: collapse;
     border: 2px solid transparent;
